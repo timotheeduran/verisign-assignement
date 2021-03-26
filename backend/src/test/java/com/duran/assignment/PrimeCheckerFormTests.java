@@ -29,6 +29,11 @@ public class PrimeCheckerFormTests {
      */
     private final String route = "/checker";
 
+    /**
+     * The name of the JSON field containing the answer
+     */
+    private final String isPrimeFieldName = "isPrime";
+
     @Test
     public void givenNoFormData_thenStatus400() throws Exception {
         mockMvc.perform(post(route)
@@ -70,6 +75,15 @@ public class PrimeCheckerFormTests {
         }
     }
 
+    @Test
+    public void givenPrimeNumber_thenShouldTrue() throws Exception {
+        int[] testNumbers = {2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 112909};
+
+        for (int number: testNumbers) {
+            assertResponseIsOk(number, true);
+        }
+    }
+
     private void assertResponseIsOk(int number, boolean shouldBePrime) throws Exception {
         PrimeCheckerForm formContent = new PrimeCheckerForm(number);
 
@@ -78,8 +92,7 @@ public class PrimeCheckerFormTests {
                 .content(objectMapper.writeValueAsString(formContent)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("isPrime", is(false)));
+                .andExpect(jsonPath(isPrimeFieldName, is(shouldBePrime)));
     }
 
 }

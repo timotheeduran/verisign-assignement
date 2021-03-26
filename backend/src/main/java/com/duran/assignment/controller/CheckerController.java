@@ -1,20 +1,19 @@
 package com.duran.assignment.controller;
 
+import com.duran.assignment.models.PrimeCheckerAnswer;
 import com.duran.assignment.models.PrimeCheckerForm;
+import org.springframework.http.MediaType;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
 @RestController
 public class CheckerController {
 
-    @PostMapping("/checker")
-    public String checkPrimeNumber(@Valid PrimeCheckerForm primeCheckerForm, BindingResult bindingResult) {
-        return String.format("Hello world");
+    @RequestMapping(value = "/checker", method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
+    public PrimeCheckerAnswer checkPrimeNumber(@Valid PrimeCheckerForm primeCheckerForm, BindingResult bindingResult) {
+        return new PrimeCheckerAnswer(false);
     }
 
 }
