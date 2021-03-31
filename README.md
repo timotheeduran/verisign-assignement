@@ -16,7 +16,7 @@ Simple tool to check if a given number is prime or not. It includes a ReactJS fr
 
 ### Frontend
 
-1. Go the the `/frontend` folder.`
+1. Go the the `/frontend` folder.
 2. On macOS, run `npm run start`.
 3. The frontend is now accessible here `http://localhost:3000`.
 
