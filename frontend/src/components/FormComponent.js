@@ -10,12 +10,20 @@ export default class FormComponent extends React.Component {
     }
   }
 
+  /**
+   * Handles a change in value for the numberField state variable.
+   *
+   * @param {event} e The event related to the action.
+   */
   handleChange(e) {
     this.setState({numberField: e.target.value})
   }
 
+  /**
+   * Send a POST request containing the number entered by the user.
+   *
+   */
   postContent() {
-
     let body = {
       number: this.state.numberField,
     }
