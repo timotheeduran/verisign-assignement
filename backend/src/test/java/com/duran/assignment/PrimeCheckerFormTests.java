@@ -9,7 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.core.Is.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -37,23 +36,27 @@ public class PrimeCheckerFormTests {
     @Test
     public void givenNoFormData_thenStatus400() throws Exception {
         mockMvc.perform(post(route)
-                .contentType("application/json"))
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().is4xxClientError());
     }
 
     @Test
     public void givenNumber_asString_thenStatus200() throws Exception {
+        PrimeCheckerForm formContent = new PrimeCheckerForm(0);
+
         mockMvc.perform(post(route)
-                .contentType("application/json")
-                .content("{\"number\":\"0\"}"))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(formContent)))
                 .andExpect(status().isOk());
     }
 
     @Test
     public void givenNumber_asInt_thenStatus200() throws Exception {
+        PrimeCheckerForm formContent = new PrimeCheckerForm(0);
+
         mockMvc.perform(post(route)
-                .contentType("application/json")
-                .content("{\"number\":0}"))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(formContent)))
                 .andExpect(status().isOk());
     }
 
@@ -84,11 +87,19 @@ public class PrimeCheckerFormTests {
         }
     }
 
+    /**
+     * Send a mocked and valid POST request containing a number.
+     * Then asserts that the JSON response is valid and corresponds to the given boolean.
+     *
+     * @param  number  the number to send in the JSON
+     * @param  shouldBePrime indicates whether we expect the server to answer true or false in the "isPrime" field
+     */
     private void assertResponseIsOk(int number, boolean shouldBePrime) throws Exception {
         PrimeCheckerForm formContent = new PrimeCheckerForm(number);
 
         mockMvc.perform(post(route)
-                .contentType("application/json")
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(formContent)))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
