@@ -28,6 +28,7 @@ Simple tool to check if a given number is prime or not. It includes a ReactJS fr
 * We should use CSRF Tokens to avoid Cross-Site Reference Forgery.
 * It would be great to check if the backend code follows the good practices recommended by the Spring Boot community.
 * ReactJS code should be refactored, tested, and documented.
+* Axios error handling is weak and should be improved.
 * The UI/UX is basic; the user experience could largely be improved.
 
 ## Credits
