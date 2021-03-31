@@ -1,7 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
+import FormComponent from "./components/FormComponent";
 
 function App() {
+
   return (
     <div className="min-h-screen  bg-warm-gray-50 flex flex-col justify-center">
       <main>
@@ -19,22 +21,11 @@ function App() {
                 </p>
               </div>
               <div className="mt-12 sm:w-full sm:max-w-md lg:mt-0 lg:ml-8 lg:flex-1">
-                <form className="sm:flex">
-                  <label htmlFor="numberField" className="sr-only">Number to check</label>
-                  <input id="numberField" name="numberField" type="number" required
-                         className="w-full border-white px-5 py-3 placeholder-warm-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-cyan-700 focus:ring-white rounded-md"
-                         placeholder="Enter a number"
-                         min="0"
-                  />
-                    <button type="submit"
-                            className="mt-3 w-full flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-cyan-700 focus:ring-green-400 sm:mt-0 sm:ml-3 sm:w-auto sm:flex-shrink-0">
-                      Check
-                    </button>
-                </form>
+                <FormComponent />
                 <p className="mt-3 text-sm text-cyan-100">
-                  Please enter a number greater than 0.
+                  Feeling lost?
                   <a href="https://en.wikipedia.org/wiki/Prime_number" className="text-white font-medium underline ml-1">
-                    A prime number cannot be negative.
+                    Learn what is a prime number.
                   </a>
                 </p>
               </div>
