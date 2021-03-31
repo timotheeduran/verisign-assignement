@@ -1,4 +1,6 @@
-# Verisign Assignment
+![smartmockups_kmxsvnde](https://user-images.githubusercontent.com/26303997/113195132-32b36500-9262-11eb-87f2-255cdd34d76d.jpeg)
+
+# Prime Checker
 Simple tool to check if a given number is prime or not. It includes a ReactJS frontend and a Spring Boot Java backend.
 
 ## Structure
